@@ -111,6 +111,20 @@ class ImageObserver
      */
     public function deleted($entity)
     {
+        if ($entity->isForceDeleting()) {
+            $entity->langs()->withTrashed()
+                            ->forceDelete();
+            if (
+                config('wk-morph-image.onoff.morph-comment')
+                && !empty(config('wk-core.class.morph-comment.comment'))
+            ) {
+                $records = $entity->comments()->withTrashed()->get();
+                foreach ($records as $recoed) {
+                    $recoed->forceDelete();
+                }
+            }
+        }
+
         if (!config('php-morph-image.soft_delete')) {
             /**
              * To Do:
@@ -119,17 +133,6 @@ class ImageObserver
              */
 
             $entity->forceDelete();
-        }
-
-        if ($entity->isForceDeleting()) {
-            $entity->langs()->withTrashed()
-                            ->forceDelete();
-            if (
-                config('wk-morph-image.onoff.morph-comment')
-                && !empty(config('wk-core.class.morph-comment.comment'))
-            ) {
-                $entity->comments()->withTrashed()->forceDelete();
-            }
         }
     }
 

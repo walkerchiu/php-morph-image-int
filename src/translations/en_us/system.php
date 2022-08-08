@@ -32,6 +32,7 @@ return [
     'size'        => 'Size',
     'data'        => 'Data',
     'options'     => 'Options',
+    'order'       => 'Order',
     'detail'      => 'Detail',
     'file'        => 'File',
 

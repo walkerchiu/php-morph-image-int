@@ -32,6 +32,7 @@ return [
     'size'        => '尺寸',
     'data'        => '資料',
     'options'     => '選項',
+    'order'       => '排序',
     'detail'      => '細節',
     'file'        => '檔案',
 

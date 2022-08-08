@@ -30,6 +30,7 @@ class Image extends Entity
             'type', 'size',
             'data',
             'options',
+            'order',
             'is_visible'
         ]);
 

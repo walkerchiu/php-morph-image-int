@@ -19,6 +19,7 @@ class CreateWkMorphImageTable extends Migration
             $table->string('size')->nullable();
             $table->longText('data')->nullable();
             $table->json('options')->nullable();
+            $table->unsignedBigInteger('order')->nullable();
             $table->boolean('is_visible')->default(1);
             $table->boolean('is_enabled')->default(1);
 

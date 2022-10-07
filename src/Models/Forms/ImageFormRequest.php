@@ -320,6 +320,27 @@ class ImageFormRequest extends FormRequest
                     if (!$result)
                         $validator->errors()->add('morph_id', trans('php-core::validation.exists'));
                 }
+                if ( config('wk-morph-image.onoff.mall-merchandise') ) {
+                    if (
+                        !empty(config('wk-core.class.mall-merchandise.cavarianttalog'))
+                        && $data['morph_type'] == config('wk-core.class.mall-merchandise.variant')
+                    ) {
+                        $result = DB::table(config('wk-core.table.mall-merchandise.variants'))
+                                    ->where('id', $data['morph_id'])
+                                    ->exists();
+                        if (!$result)
+                            $validator->errors()->add('morph_id', trans('php-core::validation.exists'));
+                    } elseif (
+                        !empty(config('wk-core.class.mall-merchandise.product'))
+                        && $data['morph_type'] == config('wk-core.class.mall-merchandise.product')
+                    ) {
+                        $result = DB::table(config('wk-core.table.mall-merchandise.products'))
+                                    ->where('id', $data['morph_id'])
+                                    ->exists();
+                        if (!$result)
+                            $validator->errors()->add('morph_id', trans('php-core::validation.exists'));
+                    }
+                }
                 if ( config('wk-morph-image.onoff.mall-shelf') ) {
                     if (
                         !empty(config('wk-core.class.mall-shelf.catalog'))

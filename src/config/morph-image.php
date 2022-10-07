@@ -25,16 +25,17 @@ return [
     |
     */
     'onoff' => [
-        'core-lang_core' => 0,
+        'core-lang_core'   => 0,
 
-        'blog'           => 0,
-        'group'          => 0,
-        'mall-shelf'     => 1,
-        'morph-category' => 0,
-        'morph-comment'  => 0,
-        'rule'           => 0,
-        'rule-hit'       => 0,
-        'site'           => 0
+        'blog'             => 0,
+        'group'            => 0,
+        'mall-merchandise' => 1,
+        'mall-shelf'       => 1,
+        'morph-category'   => 0,
+        'morph-comment'    => 0,
+        'rule'             => 0,
+        'rule-hit'         => 0,
+        'site'             => 0
     ],
 
     /*

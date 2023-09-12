@@ -217,6 +217,16 @@ class ImageFormRequest extends FormRequest
                     }
                 }
                 if (
+                    config('wk-morph-image.onoff.site-cms')
+                    && !empty(config('wk-core.class.site-cms.site'))
+                    && $data['host_type'] == config('wk-core.class.site-cms.site')
+                ) {
+                    $result = DB::table(config('wk-core.table.site-cms.sites'))
+                                ->where('id', $data['host_id'])
+                                ->exists();
+                    if (!$result)
+                        $validator->errors()->add('host_id', trans('php-core::validation.exists'));
+                } elseif (
                     config('wk-morph-image.onoff.site-mall')
                     && !empty(config('wk-core.class.site-mall.site'))
                     && $data['host_type'] == config('wk-core.class.site-mall.site')
@@ -288,6 +298,16 @@ class ImageFormRequest extends FormRequest
                     }
                 }
                 if (
+                    config('wk-morph-image.onoff.site-cms')
+                    && !empty(config('wk-core.class.site-cms.site'))
+                    && $data['morph_type'] == config('wk-core.class.site-cms.site')
+                ) {
+                    $result = DB::table(config('wk-core.table.site-cms.sites'))
+                                ->where('id', $data['morph_id'])
+                                ->exists();
+                    if (!$result)
+                        $validator->errors()->add('morph_id', trans('php-core::validation.exists'));
+                } elseif (
                     config('wk-morph-image.onoff.site-mall')
                     && !empty(config('wk-core.class.site-mall.site'))
                     && $data['morph_type'] == config('wk-core.class.site-mall.site')

@@ -21,7 +21,7 @@ class CreateWkMorphImageTable extends Migration
             $table->json('options')->nullable();
             $table->unsignedBigInteger('order')->nullable();
             $table->boolean('is_visible')->default(1);
-            $table->boolean('is_enabled')->default(1);
+            $table->boolean('is_enabled')->default(0);
 
             $table->timestampsTz();
             $table->softDeletes();

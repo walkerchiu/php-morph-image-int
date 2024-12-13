@@ -62,7 +62,10 @@ class ImageRepository extends Repository
                                     return $query->ofCurrent()
                                                  ->ofCode($code);
                                 })
-                                ->unless(empty(config('wk-core.class.morph-tag.tag')), function ($query) {
+                                ->when(
+                                    config('wk-morph-image.onoff.morph-tag')
+                                    && !empty(config('wk-core.class.morph-tag.tag')
+                                ), function ($query) {
                                     return $query->with(['tags', 'tags.langs']);
                                 })
                                 ->when($data, function ($query, $data) {
